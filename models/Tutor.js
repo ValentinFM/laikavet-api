@@ -4,7 +4,7 @@ const TutorSchema = new mongoose.Schema({
   nombre: {
     type: String,
     required: [true, "El nombre es obligatorio"],
-    trim: true,
+    trim: true,//trim sirve para eliminar espacios al inicio y al final
   },
   apellido: {
     type: String,

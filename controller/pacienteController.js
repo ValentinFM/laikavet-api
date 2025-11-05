@@ -12,7 +12,7 @@ exports.crearPaciente = async (req, res) => {
       return res.status(404).json({ success: false, error: 'Tutor no encontrado' });
     }
 
-    const nuevoPaciente = new Paciente(req.body);
+    const nuevoPaciente = new Paciente(req.body);//req.body viene del JSON que envía tu frontend
     await nuevoPaciente.save();
     res.status(201).json({ success: true, data: nuevoPaciente });
   } catch (error) {
