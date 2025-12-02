@@ -15,9 +15,13 @@ const PacienteSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  fechaNac: {
-    type: Date,
+  // === CAMBIO AQUÍ ===
+  // Borramos fechaNac y ponemos edad
+  edad: {
+    type: String, // Lo ponemos String para aceptar "5 meses", "2 años", etc.
+    trim: true,
   },
+  // ===================
   sexo: {
     type: String,
     enum: ["Macho", "Hembra"],
@@ -26,10 +30,9 @@ const PacienteSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  // Esta es la relación: un paciente pertenece a un tutor
   tutor: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Tutor", // Hace referencia al modelo 'Tutor'
+    ref: "Tutor",
     required: true,
   },
 });
