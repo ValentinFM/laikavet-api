@@ -1,9 +1,20 @@
 const express = require('express');
-const { crearPaciente } = require('../controller/pacienteController');
 const router = express.Router();
 
-// Ruta para "Alta de Paciente"
-// POST link del front de gonza http://tu-dominio.com/api/pacientes
+// Importamos TODAS las funciones del controlador
+const { 
+    crearPaciente, 
+    obtenerPacientes, 
+    actualizarPaciente, 
+    eliminarPaciente 
+} = require('../controller/pacienteController');
+
+// Rutas base: http://localhost:5000/api/pacientes
 router.post('/', crearPaciente);
+router.get('/', obtenerPacientes); // Agregada para que puedas ver los que creaste
+
+// Rutas que requieren ID: http://localhost:5000/api/pacientes/ID_AQUI
+router.put('/:id', actualizarPaciente);
+router.delete('/:id', eliminarPaciente);
 
 module.exports = router;
