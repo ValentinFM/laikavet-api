@@ -10,11 +10,11 @@ const {
 } = require('../controller/pacienteController');
 
 // Rutas base: http://localhost:5000/api/pacientes
-router.post('/', crearPaciente);
-router.get('/', obtenerPacientes); // Agregada para que puedas ver los que creaste
+router.post('/api/pacientes', crearPaciente);
+router.get('/api/pacientes', obtenerPacientes); // Agregada para que puedas ver los que creaste
 
 // Rutas que requieren ID: http://localhost:5000/api/pacientes/ID_AQUI
-router.put('/:id', actualizarPaciente);
-router.delete('/:id', eliminarPaciente);
+router.put('/api/pacientes/:id', actualizarPaciente);
+router.delete('/api/pacientes/:id', eliminarPaciente);
 
 module.exports = router;

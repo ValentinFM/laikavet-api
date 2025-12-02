@@ -9,7 +9,7 @@ const UsuarioSchema = new mongoose.Schema({
   },
   apellido: {
     type: String,
-    required: [true, 'El apellido es obligatorio'], // Nuevo campo obligatorio
+    required: [true, 'El apellido es obligatorio'],
     trim: true,
   },
   email: {
