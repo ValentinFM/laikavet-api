@@ -30,9 +30,12 @@ exports.crearPaciente = async (req, res) => {
 // @route   GET /api/pacientes
 exports.obtenerPacientes = async (req, res) => {
   try {
+    const { tutor } = req.query;
+    const query = tutor ? { tutor } : {};
+
     // .populate('tutor') trae los datos del dueño en vez de solo el ID
-    const pacientes = await Paciente.find().populate('tutor', 'nombre');
-    
+    const pacientes = await Paciente.find(query).populate('tutor', 'nombre apellido');
+
     res.status(200).json({ success: true, count: pacientes.length, data: pacientes });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });

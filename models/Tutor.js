@@ -21,7 +21,16 @@ const TutorSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  email: {
+    type: String,
+    trim: true,
+    lowercase: true,
+  },
   direccion: {
+    type: String,
+    trim: true,
+  },
+  ciudad: {
     type: String,
     trim: true,
   },

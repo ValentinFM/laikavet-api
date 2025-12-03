@@ -1,4 +1,12 @@
 const Usuario = require('../models/Usuario');
+const jwt = require('jsonwebtoken');
+
+// Generar JWT
+const generarToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET || 'secreto_super_seguro', {
+    expiresIn: '30d',
+  });
+};
 
 // @desc    Registrar un nuevo usuario
 // @route   POST /api/auth/register
@@ -30,10 +38,11 @@ exports.registrarUsuario = async (req, res) => {
 
     await usuario.save();
 
-    // 3. Responder
+    // 3. Responder con Token
     res.status(201).json({
       success: true,
       message: 'Usuario registrado exitosamente',
+      token: generarToken(usuario._id),
       data: {
         _id: usuario._id,
         nombre: usuario.nombre,
@@ -79,10 +88,11 @@ exports.loginUsuario = async (req, res) => {
       return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
     }
 
-    // 4. Responder con los datos del usuario (incluyendo nombre y apellido)
+    // 4. Responder con los datos del usuario y Token
     res.status(200).json({
       success: true,
       message: 'Inicio de sesión exitoso',
+      token: generarToken(usuario._id),
       data: {
         _id: usuario._id,
         nombre: usuario.nombre,
