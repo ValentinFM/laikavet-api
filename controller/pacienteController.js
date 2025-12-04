@@ -13,7 +13,7 @@ exports.crearPaciente = async (req, res) => {
       return res.status(404).json({ success: false, error: 'Tutor no encontrado' });
     }
 
-    // req.body viene del JSON que envía tu frontend
+    // req.body viene del JSON que envía el front de Gonza
     const nuevoPaciente = new Paciente(req.body);
     await nuevoPaciente.save();
     res.status(201).json({ success: true, data: nuevoPaciente });
@@ -21,10 +21,6 @@ exports.crearPaciente = async (req, res) => {
     res.status(400).json({ success: false, error: error.message });
   }
 };
-
-// ==========================================
-// CÓDIGO (Marco)
-// ==========================================
 
 // @desc    Obtener todos los pacientes (Para ver la lista y los IDs)
 // @route   GET /api/pacientes

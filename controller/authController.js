@@ -2,9 +2,9 @@ const Usuario = require('../models/Usuario');
 const jwt = require('jsonwebtoken');
 
 // Generar JWT
-const generarToken = (id) => {
+const generarToken = (id) => {//esto genera el token
   return jwt.sign({ id }, process.env.JWT_SECRET || 'secreto_super_seguro', {
-    expiresIn: '30d',
+    expiresIn: '30d',//esto es para que el token expire en 30 dias
   });
 };
 
@@ -15,10 +15,10 @@ exports.registrarUsuario = async (req, res) => {
     const { email, password, nombre, apellido } = req.body;
 
     // Validación manual rápida para dar mejor feedback
-    if (!nombre || !apellido) {
-      return res.status(400).json({ 
-        success: false, 
-        message: 'Por favor ingrese nombre y apellido' 
+    if (!nombre || !apellido) {//si no viene el nombre o el apellido envio un error
+      return res.status(400).json({
+        success: false,
+        message: 'Por favor ingrese nombre y apellido'
       });
     }
 

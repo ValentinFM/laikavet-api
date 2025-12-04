@@ -12,13 +12,12 @@ connectDB();
 // Creaamos la aplicación de Express
 const app = express();
 
-// Middlewares
-app.use(cors()); 
-app.use(express.json()); 
+// Middlewares son funciones que se ejecutan antes de que llegue a la ruta
+app.use(cors()); // cors es para que el frontend pueda hacer peticiones a la API
+app.use(express.json()); // express.json() es para que el frontend pueda enviar JSON
 
 // Definir las rutas
-
-app.use('/api/auth', require('./routes/authRoutes')); 
+app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/tutores', require('./routes/tutorRoutes'));
 app.use('/api/pacientes', require('./routes/pacienteRoutes'));
 
